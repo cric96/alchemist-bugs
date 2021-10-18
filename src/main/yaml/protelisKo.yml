@@ -4,7 +4,7 @@ variables:
   foo: &foo
     language: scala
     formula: >
-      it.unibo.data.FactoryOk.foo
+      it.unibo.data.FactoryKo.foo
 network-model:
   type: ConnectWithinDistance
   parameters: [0.5]
