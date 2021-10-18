@@ -1,19 +1,17 @@
 import java.io.ByteArrayOutputStream
 import java.awt.GraphicsEnvironment
 
+val scalaLib: String = "2.13.2"
+val scala: String = "2.13"
+
 plugins {
     application
+    scala
     kotlin("jvm")
 }
 
 repositories {
     mavenCentral()
-    /* 
-     * The following repositories contain beta features and should be added for experimental mode only
-     * 
-     * maven("https://dl.bintray.com/alchemist-simulator/Alchemist/")
-     * maven("https://dl.bintray.com/protelis/Protelis/")
-     */
 }
 /*
  * Only required if you plan to use Protelis, remove otherwise
@@ -35,6 +33,7 @@ fun onJava16AndAbove(body: () -> Unit) {
 dependencies {
     implementation("it.unibo.alchemist:alchemist:_")
     implementation("it.unibo.alchemist:alchemist-incarnation-protelis:_")
+    implementation("it.unibo.alchemist:alchemist-incarnation-scafi:_")
     if (!GraphicsEnvironment.isHeadless()) {
         implementation("it.unibo.alchemist:alchemist-swingui:_")
     }
@@ -44,6 +43,9 @@ dependencies {
         runtimeOnly("org.eclipse.xtext:org.eclipse.xtext:_")
         runtimeOnly("org.eclipse.xtext:org.eclipse.xtext.xbase:_")
     }
+    // Scala Deps
+    implementation("org.scala-lang:scala-library:$scalaLib")
+    implementation("it.unibo.scafi:scafi-core_${scala}:_")
 }
 
 // Heap size estimation for batches
@@ -113,7 +115,6 @@ File(rootProject.rootDir.path + "/src/main/yaml").listFiles()
             args(
                 "-e", "data/${it.nameWithoutExtension}",
                 "-b",
-                "-var", "seed", "speed", "meanNeighbors", "nodeCount",
                 "-p", threadCount,
                 "-i", 1
             )
