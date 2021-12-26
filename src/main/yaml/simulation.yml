@@ -1,4 +1,8 @@
 incarnation: scafi
+variables:
+  seed: &seed { min: 0.0, max: 1.0, step: 1.0, default: 0.0 }
+
+terminate: { type: AfterTime, parameters: [5] }
 
 network-model:
   type: ConnectWithinDistance
@@ -12,3 +16,10 @@ layers:
 deployments:
   type: Grid
   parameters: [-5, -5, 5, 5, 0.25, 0.25, 0.1, 0.1]
+
+export:
+  - type: it.unibo.alchemist.loader.export.exporters.CSVExporter
+    parameters: ["simulation", 1.0, "./data"]
+    data:
+      - type: Time
+      - type: it.unibo.alchemist.loader.export.extractors.ExportWithProblem
