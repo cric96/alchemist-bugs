@@ -34,9 +34,8 @@ dependencies {
     implementation("it.unibo.alchemist:alchemist:_")
     implementation("it.unibo.alchemist:alchemist-incarnation-protelis:_")
     implementation("it.unibo.alchemist:alchemist-incarnation-scafi:_")
-    if (!GraphicsEnvironment.isHeadless()) {
-        implementation("it.unibo.alchemist:alchemist-swingui:_")
-    }
+    implementation("it.unibo.alchemist:alchemist-swingui:_")
+
     implementation(kotlin("stdlib-jdk8"))
     onJava16AndAbove {
         runtimeOnly("com.google.inject:guice:_")

@@ -1,0 +1,14 @@
+incarnation: scafi
+
+network-model:
+  type: ConnectWithinDistance
+  parameters: [0.5]
+
+layers:
+  - type: BidimensionalGaussianLayer
+    parameters: [ 3, -4, -2.0, 1.0 ]
+    molecule: foo
+
+deployments:
+  type: Grid
+  parameters: [-5, -5, 5, 5, 0.25, 0.25, 0.1, 0.1]
