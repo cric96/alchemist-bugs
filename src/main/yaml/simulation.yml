@@ -4,9 +4,15 @@ network-model:
   type: ConnectWithinDistance
   parameters: [0.5]
 
-_gradient: &gradient
+layers:
+  - type: ConstantLayer
+    parameters: [ 20.0 ]
+    molecule: temperature
+
+_program: &program
   - time-distribution: 1
-    program: org:protelis:tutorial:distanceTo
+    program: |
+      env.get("temperature");
   - program: send
 
 deployments:
@@ -18,9 +24,4 @@ deployments:
         parameters: [-6, -6, 2, 2]
       molecule: source
       concentration: true
-    - in:
-        type: Rectangle
-        parameters: [4, 4, 6, 6]
-      molecule: destination
-      concentration: true
-  programs: *gradient
+  programs: *program
